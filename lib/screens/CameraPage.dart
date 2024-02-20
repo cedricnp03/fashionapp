@@ -4,6 +4,7 @@ import 'package:fashionapp/functions/imagePickAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../recognition/MLKitTextRecognizer.dart';
 import '../recognition/RecognitionResponse.dart';
@@ -58,8 +59,18 @@ class _CameraPageState extends State<CameraPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Text Recognition'),
+        title: Text('FASHION APP',
+          style: GoogleFonts.pacifico(
+            textStyle: Theme.of(context).textTheme.titleLarge,
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
+      extendBodyBehindAppBar: true,
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
@@ -80,7 +91,24 @@ class _CameraPageState extends State<CameraPage> {
             ),
           );
         },
-        child: const Icon(Icons.add),
+        backgroundColor: const Color(0xFFA7C957),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(60), //角の丸み
+        ),
+        child: const Icon(Icons.camera_alt),
+        //label: const Text("Scan"),
+      ),
+      bottomNavigationBar: const BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 7.0,
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(icon: Icon(Icons.settings), onPressed: null),
+            IconButton(icon: Icon(Icons.history), onPressed: null,)
+          ],
+        )
       ),
       body: _response == null
           ? const Center(
